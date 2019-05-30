@@ -1,19 +1,12 @@
-<%-
-  num_nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
-  num_cores_req = num_cores.to_i
-
-  if node_type == ':hugemem'
-    num_cores_req = 48
-  else
-    max_cores = 28
-    num_cores_req = (num_cores_req == 0) ? max_cores : [num_cores_req, max_cores].min
-  end
--%>
 ---
 batch_connect:
-  template: "vnc"
+  template: vnc
 script:
   native:
-    resources:
-      nodes: "<%= num_nodes %>:ppn=<%= num_cores_req %><%= node_type %>"
-      software: "comsolscript"
+    - "-n"
+    - "<%= bc_num_slots %>"
+    <%- if memtask != "default" -%>
+    - "--mem"
+    - "<%= memtask %>"
+    <%- end -%>
+
