@@ -8,14 +8,12 @@ attributes:
   bc_num_slots:
     label: "Number of tasks"
     min: 1
-    max: 32
     step: 1
     help: |
       Maximum of 32 tasks is allowed on notchpeak-shared-short partition
   bc_num_hours:
     value: 1
     min: 1
-    max: 8
     step: 1
     help: "Maximum notchpeak-shared-short walltime is 8 hours"
   bc_vnc_resolution:
